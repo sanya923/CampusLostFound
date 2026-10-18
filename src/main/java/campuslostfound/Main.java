@@ -9,7 +9,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         LostFoundSystem system = new LostFoundSystem();
 
-        int choice;
+        int choice=0;
 
         do {
 
@@ -22,11 +22,18 @@ public class Main {
             System.out.println("4. View Found Items");
             System.out.println("5. Search Lost Item");
             System.out.println("6. Search Found Item");
-            System.out.println("7. Exit");
+            System.out.println("7. Find Possible Matches");
+            System.out.println("8. Exit");           
             System.out.println("=================================");
             System.out.print("Enter your choice: ");
 
-            choice = scanner.nextInt();
+            try {
+    choice = Integer.parseInt(scanner.next());
+} catch (NumberFormatException e) {
+    System.out.println("Invalid choice. Please enter a number from 1 to 8.");
+    scanner.nextLine();
+    continue;
+}
             scanner.nextLine();
 
             switch (choice) {
@@ -36,7 +43,17 @@ public class Main {
                     System.out.println("\n--- Report Lost Item ---");
 
                     System.out.print("Enter item ID: ");
-                    int lostId = scanner.nextInt();
+                    int lostId;
+                    while (true) {
+                    String input = scanner.next();
+                    try {
+                    lostId = Integer.parseInt(input);
+                    break;
+                    } 
+                     catch (NumberFormatException e) {
+                     System.out.print("Invalid ID. Enter a numeric ID: ");
+                  }
+                }
                     scanner.nextLine();
 
                     System.out.print("Enter item name: ");
@@ -72,7 +89,16 @@ public class Main {
                     System.out.println("\n--- Report Found Item ---");
 
                     System.out.print("Enter item ID: ");
-                    int foundId = scanner.nextInt();
+                    int foundId;
+while (true) {
+    String input = scanner.next();
+    try {
+        foundId = Integer.parseInt(input);
+        break;
+    } catch (NumberFormatException e) {
+        System.out.print("Invalid ID. Enter a numeric ID: ");
+    }
+}
                     scanner.nextLine();
 
                     System.out.print("Enter item name: ");
@@ -134,7 +160,10 @@ public class Main {
                     break;
 
                 case 7:
+               system.findMatches();
+                break;
 
+                 case 8:
                     System.out.println("\nThank you for using Campus Lost & Found!");
                     break;
 
@@ -143,7 +172,7 @@ public class Main {
                     System.out.println("\nInvalid choice. Please try again.");
             }
 
-        } while (choice != 7);
+        } while (choice != 8);
 
         scanner.close();
     }

@@ -9,3 +9,8 @@
 # Operating system files
 .DS_Store
 Thumbs.db
+# Local test data
+src/main/java/data/
+
+# Backup copies
+src/main/java/campuslostfound/backup/
